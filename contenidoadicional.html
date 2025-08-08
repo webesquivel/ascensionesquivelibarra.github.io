@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido Adicional - Escuela Ascensión Esquivel Ibarra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(rgba(235, 210, 196, 0.8), rgba(235, 210, 196, 0.8)), 
+                        url('escuela.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            display: block;
+            font-size: 1.1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            position: relative;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #fcece3, #f8e6d8);
+            color: #333;
+            padding-left: 2rem;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(135deg, #d4a574, #e8c4a0);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .dropdown-item:first-child {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .header {
+            background: #fcece3;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 80px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .menu-toggle {
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            font-size: 2.0rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.3rem 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .content-container h1 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .content-container p {
+            color: #666;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .download-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .download-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        .download-button i {
+            margin-right: 0.5rem;
+        }
+
+        .additional-info {
+            background: rgba(252, 236, 227, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .additional-info h3 {
+            color: #333;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .additional-info ul {
+            text-align: left;
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .additional-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #fcece3;
+            color: #333;
+            padding: 1rem 2rem;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        footer span {
+            font-size: 1.0rem;
+            font-weight: 600;
+        }
+        
+        .footer-left {
+            display: flex;
+            justify-content: flex-start;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mep-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #fcece3;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item:hover {
+            background-color: #f8f9fa;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #fcece3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .contact-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .contact-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .content-container {
+                margin: 2rem 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .content-container h1 {
+                font-size: 2rem;
+            }
+
+            .content-container p {
+                font-size: 1.2rem;
+            }
+
+            .download-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .footer-left {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .footer-right {
+                justify-content: center;
+            }
+
+            .mep-logo {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="dropdown">
+            <button class="menu-toggle" onclick="toggleDropdown()">☰</button>
+            <div class="dropdown-menu" id="menuDropdown">
+                <a href="index.html" class="dropdown-item">Inicio</a>
+                <a href="Quienessomos.html" class="dropdown-item">Quiénes somos</a>
+                <a href="Administrativo.html" class="dropdown-item">Administrativo</a>
+                <a href="academico.html" class="dropdown-item">Académico</a>
+                <a href="Servicios.html" class="dropdown-item">Servicios</a>
+                <a href="contenidoadicional.html" class="dropdown-item">Contenido adicional</a>
+            </div>
+        </div>
+        <img src="logo.png" alt="Logo" class="logo">
+    </header>
+
+    <div class="content-container">
+        <h1>Contenido Adicional</h1>
+        <p>
+            Aquí encontrará información complementaria  
+        </p>
+        
+        <a href="NORMATIVA_INTERNA EAEI OFICIAL 2025.pdf" class="download-button" download="NORMATIVA_INTERNA EAEI OFICIAL 2025.pdf">
+            <i class="fas fa-download"></i>
+            Descargar
+        </a>
+       
+        <div class="additional-info">
+            <h3>Documentos</h3>
+            <ul>
+                <li>Normativa interna</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-left"> 
+            <span>Contáctenos</span>
+            <span>#2551 0442</span>
+            <a href="https://www.facebook.com/AscensionEsquivelIbarraOficial"
+               target="_blank" 
+               class="social-link">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
+        <div class="footer-right">
+            <span>© 2025 Escuela Ascensión Esquivel Ibarra</span>
+            <img src="mep.png" alt="MEP" class="mep-logo">
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById('menuDropdown').classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-toggle')) {
+                var dropdowns = document.getElementsByClassName('dropdown-menu');
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        function downloadFile() {
+            // Mejorar compatibilidad móvil para descarga
+            const link = document.createElement('a');
+            link.href = 'NORMATIVA_INTERNA EAEI OFICIAL 2025.pdf';
+            link.download = 'NORMATIVA_INTERNA EAEI OFICIAL 2025.pdf';
+            link.target = '_blank';
+            
+            // Añadir al DOM temporalmente para mejor compatibilidad móvil
+            document.body.appendChild(link);
+            link.click();
+            
+            // Remover el enlace después de un breve delay
+            setTimeout(() => {
+                document.body.removeChild(link);
+            }, 100);
+        }
+
+        // Show footer when near bottom
+        window.addEventListener('scroll', function() {
+            const footer = document.querySelector('footer');
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if ((windowHeight + scrollTop) >= (documentHeight - 10)) {
+                footer.style.display = 'flex';
+            } else {
+                footer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
